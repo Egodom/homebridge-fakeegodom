@@ -1,39 +1,46 @@
 var Service, Characteristic;
 
-module.exports = function(homebridge) {
+module.exports = function(homebridge)
+{
+
+  console.log("homebridge Egodom API version: " + homebridge.version);
+  Accessory = homebridge.platformAccessory;
   Service = homebridge.hap.Service;
   Characteristic = homebridge.hap.Characteristic;
-  homebridge.registerAccessory("homebridge-fakeegodom", "FakeEgodom", FakeBulbAccessory);
+
+  homebridge.registerAccessory("homebridge-egodom", "Egodom", EgodomAccessory);
+
 }
 
-function FakeBulbAccessory(log, config) {
+function EgodomAccessory(log, config )
+{
+  log("EgodomAccessory");
+  log ("name:%s",config.name);
+  log ("type:%s",config.type);
+
+  var platform = this;
   this.log = log;
-  this.name = config["name"];
-  this.bulbName = config["bulb_name"] || this.name; // fallback to "name" if you didn't specify an exact "bulb_name"
-  this.binaryState = 0; // bulb state, default is OFF
-  this.log("Starting a fake bulb device with name '" + this.bulbName + "'...");
-//  this.search();
+  this.config = config;
+
+  
 }
 
-FakeBulbAccessory.prototype.getPowerOn = function(callback) {
-  var powerOn = this.binaryState > 0;
-  this.log("Power state for the '%s' is %s", this.bulbName, this.binaryState);
-  callback(null, powerOn);
+EgodomAccessory.prototype.getPowerOn = function(callback) 
+{
+  log("EgodomAccessory.prototype.getPowerOn");
 }
 
-FakeBulbAccessory.prototype.setPowerOn = function(powerOn, callback) {
-  this.binaryState = powerOn ? 1 : 0; // wemo langauge
-  this.log("Set power state on the '%s' to %s", this.bulbName, this.binaryState);
-  callback(null);
+EgodomAccessory.prototype.setPowerOn = function(powerOn, callback) 
+{
+  log("EgodomAccessory.prototype.setPowerOn");
 }
 
-FakeBulbAccessory.prototype.getServices = function() {
-    var lightbulbService = new Service.Lightbulb(this.name);
-    
-    lightbulbService
-      .getCharacteristic(Characteristic.On)
-      .on('get', this.getPowerOn.bind(this))
-      .on('set', this.setPowerOn.bind(this));
-    
-    return [lightbulbService];
+EgodomAccessory.prototype.getServices = function() 
+{
+    var EgodomService = new Service.Lightbulb(this.name);
+
+    return [EgodomService];
 }
+
+
+
