@@ -1,23 +1,27 @@
+
 {
-  "name": "homebridge-fakeegodom",
-  "version": "0.0.3",
-  "description": "Fake bulb egodom plugin for homebridge: https://github.com/Egodom/homebridge-fakeegodom",
-  "license": "MIT",
+  "name": "homebridge-egodom",
+  "version": "0.0.1",
+  "description": "test",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
   "keywords": [
     "homebridge-plugin"
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/Egodom/HomeKitTest2.git"
+    "url": "git://github.com/Egodom/homebridge-egodom.git"
   },
-  "engines": {
+  "engines":
+  {
     "node": ">=0.12.0",
     "homebridge": ">=0.2.0"
   },
-  "author": {
-    "name": "Andrea"
-  },
   "dependencies": {
-    "request": "^2.65.0"
+    "request": "2.49.x"
   }
 }
+
+
